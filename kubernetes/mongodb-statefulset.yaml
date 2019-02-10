@@ -1,0 +1,19 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: mongod
+spec:
+  serviceName: mongodb-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        role: mongo
+        replicaset: MongoRepSet
+    spec:
+      containers:
+        - name: mongodb-container
+          image: mongo:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 27017

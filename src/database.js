@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const CONNECTION_URL = 'mongodb://127.0.0.1/graphql-example';
+const CONNECTION_URL = 'mongodb://mongodb-service.graphql-k8s/graphql-example';
 
 const authorSchema = new mongoose.Schema({
   id: { type: Number, required: true },
