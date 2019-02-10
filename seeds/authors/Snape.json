@@ -1,0 +1,6 @@
+{
+  "id": 4,
+  "name": "Snape",
+  "books": [{ "id": 2 }],
+  "magazines": [{ "id": 0 }]
+}

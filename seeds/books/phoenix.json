@@ -1,0 +1,6 @@
+{
+  "id": 2,
+  "title": "The phoenix",
+  "authors": [{ "id": 3 }, { "id": 4 }],
+  "category": { "id": 0 }
+}

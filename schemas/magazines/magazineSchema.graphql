@@ -1,0 +1,6 @@
+type Magazine {
+    id: ID!
+    title: String!
+    author: Author!
+    category: Category
+}

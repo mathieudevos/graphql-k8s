@@ -1,0 +1,6 @@
+{
+  "id": 1,
+  "name": "API",
+  "books": [{ "id": 1 }],
+  "magazines": [{ "id": 1 }]
+}

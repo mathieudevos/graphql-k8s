@@ -1,0 +1,6 @@
+{
+  "id": 0,
+  "name": "Magic",
+  "books": [{ "id": 0 }, { "id": 2 }, { "id": 3 }],
+  "magazines": [{ "id": 0 }]
+}

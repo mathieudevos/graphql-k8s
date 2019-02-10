@@ -1,0 +1,6 @@
+{
+  "id": 3,
+  "title": "Dumbledore lives",
+  "authors": [{ "id": 2 }],
+  "category": { "id": 0 }
+}

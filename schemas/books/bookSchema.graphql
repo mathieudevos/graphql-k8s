@@ -1,10 +1,6 @@
-const BookSchema = `
-  type Book {
+type Book {
     id: ID!
     title: String!
     authors: [Author]
     category: Category
   }
-`;
-
-module.exports = { BookSchema };

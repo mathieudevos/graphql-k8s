@@ -1,14 +1,16 @@
-#!/usr/local/bin/node
-
 const { graphql } = require('graphql');
 const { makeExecutableSchema } = require('graphql-tools');
-const { AuthorSchema } = require('./authors/schema');
-const { BookSchema } = require('./books/schema');
-const { CategorySchema } = require('./categories/schema');
-const { MagazineSchema } = require('./magazines/schema');
-const { RootSchema } = require('./rootSchema');
+const express = require('express');
+const bodyParser = require('body-parser');
+const { readSchema } = require('./schemaReader');
 const { resolvers } = require('./resolver');
+const { connectToDB } = require('./database');
 
+const AuthorSchema = readSchema('authors/authorSchema.graphql');
+const BookSchema = readSchema('books/bookSchema.graphql');
+const CategorySchema = readSchema('categories/categorySchema.graphql');
+const MagazineSchema = readSchema('magazines/magazineSchema.graphql');
+const RootSchema = readSchema('rootSchema.graphql');
 
 const executableSchema = makeExecutableSchema({
   typeDefs: [
@@ -22,12 +24,19 @@ const executableSchema = makeExecutableSchema({
 });
 
 // GraphQL validation using directives (graphql-constraint-directive) @constraint
+connectToDB();
 
-graphql(
-  executableSchema,
-  '{ Book(title: "The phoenix") { id, title, authors { name, magazines { title, category { name } } } } }',
-  // 'query { book0: Book(title: "The phoenix") { ...bookFragment } book1: Book(title: "The secret dungeon") { ...bookFragment } } fragment bookFragment on Book { title, authors { name } }',
-).then(resp => console.log(JSON.stringify(resp)));
+const app = express();
+app.use(bodyParser.text({ type: 'application/graphql' }));
+
+app.post('/graphql', (req, res) => {
+  graphql(
+    executableSchema,
+    req.body,
+  ).then(resp => res.send(JSON.stringify(resp)));
+});
+
+app.listen(3000, () => console.log('GraphQL listening.'));
 
 // 'query { Book(title: "The phoenix") { title, authors { name } } }'
 // '{ Book(title: "The phoenix") { id, title, authors { name } } }'

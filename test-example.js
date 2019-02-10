@@ -1,4 +1,5 @@
 #!/usr/local/bin/node
+/* eslint-disable */
 
 const { buildSchema, graphql } = require('graphql');
 
@@ -49,10 +50,9 @@ const resolvers = {
   Book: title => getBook(title),
 };
 
-graphql(schema, '{ __schema { types { name } } }', resolvers).then(resp => console.log(JSON.stringify(resp)));
-// '{ books { title, authors { name } } }'
-// '{ Book(title: "The phoenix") { title, authors { name } } }'
-// '{ Book(title: "The phoenix") { title} }'
-// '{ books { title, authors { books { title } } } }'
-// '{ first_book: Book(title: "The phoenix") { title, authors { name } }, second_book: Book(title: "Dumbledore lives") { title, authors } }'
-// '{ __schema { types { name } } }'
+// graphql(schema, '{ __schema { types { name } } }', resolvers).then(resp => console.log(JSON.stringify(resp)));
+// graphql(schema, '{ books { title, authors { name } } }', resolvers).then(resp => console.log(JSON.stringify(resp)));
+// graphql(schema, '{ Book(title: "The phoenix") { title, authors { name } } }', resolvers).then(resp => console.log(JSON.stringify(resp)));
+// graphql(schema, '{ Book(title: "The phoenix") { title} }', resolvers).then(resp => console.log(JSON.stringify(resp)));
+// graphql(schema, '{ books { title, authors { books { title } } } }', resolvers).then(resp => console.log(JSON.stringify(resp)));
+// graphql(schema, '{ first_book: Book(title: "The phoenix") { title, authors { name } }, second_book: Book(title: "Dumbledore lives") { title, authors } }', resolvers).then(resp => console.log(JSON.stringify(resp)));

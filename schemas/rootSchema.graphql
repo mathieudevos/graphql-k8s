@@ -1,27 +1,23 @@
-const RootSchema = `
-  input AuthorRef {
+input AuthorRef {
     id: Int!
-  }
+}
 
-  type Query {
+type Query {
     authors: [Author]
     books: [Book]
     categories: [Category]
     magazines: [Magazine]
-    Book(title: String!): Book 
+    Book(title: String!): Book
     Author(name: String!): Author
     Category(name: String!): Category
     Magazine(title: String!): Magazine
-  }
+}
 
-  type Mutation {
-    addBook(title: String!, authors: [AuthorRef]): Book
-  }
+type Mutation {
+    addBook(title: String!, Authors: [AuthorRef]): Book
+}
 
-  schema {
+schema {
     query: Query
     mutation: Mutation
-  }
-`;
-
-module.exports = { RootSchema };
+}
