@@ -1,0 +1,15 @@
+# Logs
+*.log*
+
+# Runtime
+*.pid
+*.pid.lock
+
+# Dist folder
+dist/
+
+# Dependencies
+node_modules/**
+
+# Env files
+.env

@@ -27,7 +27,7 @@ const schema = buildSchema(`
   type Query {
     authors: [Author]
     books: [Book]
-    Book(title: String!): Book 
+    Book(title: String!): Book
     Author(name: String!): Author
   }
 
