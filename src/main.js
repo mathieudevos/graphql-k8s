@@ -48,12 +48,3 @@ app.get('/', (req, res) => {
 });
 
 app.listen(3000, () => console.log('GraphQL listening.'));
-
-// 'query { Book(title: "The phoenix") { title, authors { name } } }'
-// '{ Book(title: "The phoenix") { id, title, authors { name } } }'
-// '{ Book(title: "The phoenix")
-// { id, title, authors { name, magazines { title, category { name } } } } }'
-// '{ Book(title: "The phoenix") { id, title, authors { name, magazines { title, category { name } } } } }'
-// '{ book0: Book(title: "The phoenix") { id, authors { name } } book1: Book(title: "The secret dungeon") { id, authors { name } } }'
-// 'mutation { addBook(title: "newbook", authors: [{ id: 0 }]) { id, authors { name } } }',
-// 'mutation { book1: addBook(title: "newbook", authors: [{ id: 0 }]) { id, authors { name } }, book2: addBook(title: "newbooki", authors: [{ id: 1 }]) { id, authors { name } } }',
