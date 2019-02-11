@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: graphql-backend
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        role: graphql-backend
+        name: graphql-backend
+        editor: vscode
+    spec:
+      containers:
+        - name: graphql-backend
+          image: graphql-backend:0.3
+          imagePullPolicy: Never

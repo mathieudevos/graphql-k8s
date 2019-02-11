@@ -2,10 +2,13 @@
   "name": "graphql-test",
   "version": "1.0.0",
   "description": "grapql test for Intopalo",
-  "main": "index.js",
+  "main": "src/main.js",
   "author": "Mathieu Devos",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "start": "cd src && node main.js"
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",

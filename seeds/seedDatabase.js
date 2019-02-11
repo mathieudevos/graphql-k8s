@@ -3,7 +3,6 @@ const {
   BookModel,
   CategoryModel,
   MagazineModel,
-  connectToDB,
 } = require('../src/database');
 const fs = require('fs');
 
@@ -16,35 +15,39 @@ async function addToDatabase(filepath, Model) {
 }
 
 function seedAuthors() {
-  fs.readdirSync('./authors').forEach((author) => {
-    addToDatabase(`./authors/${author}`, AuthorModel);
+  fs.readdirSync(`${__dirname}/authors`).forEach(async (author) => {
+    await addToDatabase(`${__dirname}/authors/${author}`, AuthorModel);
   });
   console.log('Finished seeding authors');
 }
 
 function seedBooks() {
-  fs.readdirSync('./books').forEach((book) => {
-    addToDatabase(`./books/${book}`, BookModel);
+  fs.readdirSync(`${__dirname}/books`).forEach(async (book) => {
+    await addToDatabase(`${__dirname}/books/${book}`, BookModel);
   });
   console.log('Finished seeding books');
 }
 
 function seedCategories() {
-  fs.readdirSync('./categories').forEach((category) => {
-    addToDatabase(`./categories/${category}`, CategoryModel);
+  fs.readdirSync(`${__dirname}/categories`).forEach(async (category) => {
+    await addToDatabase(`${__dirname}/categories/${category}`, CategoryModel);
   });
   console.log('Finished seeding categories');
 }
 
 function seedMagazines() {
-  fs.readdirSync('./magazines').forEach((magazine) => {
-    addToDatabase(`./magazines/${magazine}`, MagazineModel);
+  fs.readdirSync(`${__dirname}/magazines`).forEach(async (magazine) => {
+    await addToDatabase(`${__dirname}/magazines/${magazine}`, MagazineModel);
   });
   console.log('Finished seeding magazines');
 }
 
-connectToDB();
-seedAuthors();
-seedBooks();
-seedCategories();
-seedMagazines();
+function seedAll() {
+  console.log(`Dirname: ${__dirname}`);
+  seedAuthors();
+  seedBooks();
+  seedCategories();
+  seedMagazines();
+}
+
+module.exports = { seedAll };

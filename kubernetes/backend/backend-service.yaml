@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: graphql-backend-service
+spec:
+  selector:
+    name: graphql-backend
+  type:  NodePort
+  ports:
+  - name: express
+    port: 3000
+    nodePort:  31000

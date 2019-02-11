@@ -12,6 +12,8 @@ const CategorySchema = readSchema('categories/categorySchema.graphql');
 const MagazineSchema = readSchema('magazines/magazineSchema.graphql');
 const RootSchema = readSchema('rootSchema.graphql');
 
+const { seedAll } = require('../seeds/seedDatabase');
+
 const executableSchema = makeExecutableSchema({
   typeDefs: [
     RootSchema,
@@ -34,6 +36,15 @@ app.post('/graphql', (req, res) => {
     executableSchema,
     req.body,
   ).then(resp => res.send(JSON.stringify(resp)));
+});
+
+app.get('/seed', (req, res) => {
+  seedAll();
+  res.send('Database seeded!');
+});
+
+app.get('/', (req, res) => {
+  res.send('Hello world');
 });
 
 app.listen(3000, () => console.log('GraphQL listening.'));
