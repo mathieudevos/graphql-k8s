@@ -13,5 +13,18 @@ spec:
     spec:
       containers:
         - name: graphql-backend
-          image: graphql-backend:0.4
+          image: graphql-backend:0.5
           imagePullPolicy: Never
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "100M"
+            limits:
+              cpu: "1000m"
+              memory: "200M"
+          env:
+            - name: DB_CONNECTION
+              value: mongodb-service
+          ports:
+            - containerPort: 3000
+              name: express

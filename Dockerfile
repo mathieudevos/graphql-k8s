@@ -1,8 +1,11 @@
-FROM node:10.3
+FROM node:10.3-alpine
 
 WORKDIR /backend
-COPY . /backend/
+COPY ./package.json   /backend/
+COPY ./src            /backend/src
+COPY ./seeds          /backend/seeds
+COPY ./schemas        /backend/schemas
 
 RUN cd /backend && yarn install
 
-ENTRYPOINT ["yarn", "start"]
+ENTRYPOINT ["npm", "start"]

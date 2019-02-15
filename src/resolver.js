@@ -21,8 +21,6 @@ const {
 } = require('./categories/controller');
 const { pubsub } = require('./pubsub');
 
-console.log(pubsub);
-
 const resolvers = {
   Query: {
     authors: () => getAuthors(),
@@ -39,7 +37,7 @@ const resolvers = {
   },
   Subscription: {
     bookWatcher: {
-      subscribe: () => { console.log(`pubsub: ${pubsub}`); return pubsub.asyncIterator('bookWatcher'); },
+      subscribe: () => pubsub.asyncIterator('bookWatcher'),
     },
   },
   Author: {
