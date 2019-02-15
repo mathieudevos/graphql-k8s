@@ -1,7 +1,7 @@
 const { readFileSync } = require('fs');
 
 function readSchema(filePath) {
-  return readFileSync(`../schemas/${filePath}`, 'utf8');
+  return readFileSync(`${__dirname}/../schemas/${filePath}`, 'utf8');
 }
 
 module.exports = { readSchema };

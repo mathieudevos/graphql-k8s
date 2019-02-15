@@ -1,4 +1,6 @@
 const { BookModel } = require('../database');
+const { addBookToAuthor } = require('../authors/controller');
+const { pubsub } = require('../pubsub');
 
 const getBooks = async () => {
   try {
@@ -36,6 +38,10 @@ const addBook = async ({ title, authors, category }) => {
       category,
     };
     await (new BookModel(book)).save();
+    authors.forEach(async ({ id }) => {
+      await addBookToAuthor(id, book);
+    });
+    pubsub.publish('bookWatcher', { bookWatcher: book });
     return book;
   } catch (error) {
     throw error;

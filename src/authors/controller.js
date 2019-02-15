@@ -27,16 +27,9 @@ const getAuthorById = async ({ id }) => {
   }
 };
 
-const addAuthor = async ({ name, books, magazines }) => {
+const addBookToAuthor = async (id, book) => {
   try {
-    const author = {
-      id: await AuthorModel.count(),
-      name,
-      books,
-      magazines,
-    };
-    await (new AuthorModel(author)).save();
-    return author;
+    await AuthorModel.findOneAndUpdate({ id }, { $push: { books: { id: book.id } } });
   } catch (error) {
     throw error;
   }
@@ -46,5 +39,5 @@ module.exports = {
   getAuthors,
   getAuthor,
   getAuthorById,
-  addAuthor,
+  addBookToAuthor,
 };

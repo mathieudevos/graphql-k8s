@@ -19,6 +19,9 @@ const {
   getCategory,
   getCategoryById,
 } = require('./categories/controller');
+const { pubsub } = require('./pubsub');
+
+console.log(pubsub);
 
 const resolvers = {
   Query: {
@@ -33,6 +36,11 @@ const resolvers = {
   },
   Mutation: {
     addBook(root, args) { return addBook(args); },
+  },
+  Subscription: {
+    bookWatcher: {
+      subscribe: () => { console.log(`pubsub: ${pubsub}`); return pubsub.asyncIterator('bookWatcher'); },
+    },
   },
   Author: {
     books(author) { return author.books.map(id => getBookById(id)); },

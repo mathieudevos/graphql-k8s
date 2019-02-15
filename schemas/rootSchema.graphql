@@ -17,7 +17,12 @@ type Mutation {
     addBook(title: String!, authors: [AuthorRef]): Book
 }
 
+type Subscription {
+    bookWatcher: Book
+}
+
 schema {
     query: Query
     mutation: Mutation
+    subscription: Subscription
 }
